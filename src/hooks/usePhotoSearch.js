@@ -21,7 +21,7 @@ const usePhotoSearch = (query, pageNumber) => {
       axios({
         method: "GET",
         url: `https://www.flickr.com/services/rest/?method=flickr.photos.getRecent&api_key=${process.env.REACT_APP_FLICKR_API}&format=json&nojsoncallback=1`,
-        params: { page: pageNumber, per_page: 10 },
+        params: { page: pageNumber, per_page: 10, safe_search: 1 },
         cancelToken: new axios.CancelToken((c) => (cancel = c)),
       })
         .then((res) => {
@@ -49,7 +49,7 @@ const usePhotoSearch = (query, pageNumber) => {
       axios({
         method: "GET",
         url: `https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=${process.env.REACT_APP_FLICKR_API}&format=json&nojsoncallback=1`,
-        params: { tags: query, page: pageNumber, per_page: 10 },
+        params: { tags: query, page: pageNumber, per_page: 10, safe_search: 1 },
         cancelToken: new axios.CancelToken((c) => (cancel = c)),
       })
         .then((res) => {
