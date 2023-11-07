@@ -20,12 +20,11 @@ const usePhotoSearch = (query, pageNumber) => {
     if (query == "") {
       axios({
         method: "GET",
-        url: `https://www.flickr.com/services/rest/?method=flickr.photos.getRecent&api_key=a856b9dec52b4f412babb3c0575f68d7&format=json&nojsoncallback=1`,
+        url: `https://www.flickr.com/services/rest/?method=flickr.photos.getRecent&api_key=${process.env.REACT_APP_FLICKR_API}&format=json&nojsoncallback=1`,
         params: { page: pageNumber, per_page: 10 },
         cancelToken: new axios.CancelToken((c) => (cancel = c)),
       })
         .then((res) => {
-          console.log(res.data);
           setPhotos((prev) => {
             return [
               ...prev,
@@ -39,7 +38,6 @@ const usePhotoSearch = (query, pageNumber) => {
           });
           setHasMore(res.data.photos.photo.length > 0);
           setLoading(false);
-          console.log(res.data);
         })
         .catch((err) => {
           if (axios.isCancel(err)) return;
@@ -50,12 +48,11 @@ const usePhotoSearch = (query, pageNumber) => {
     else {
       axios({
         method: "GET",
-        url: `https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=a856b9dec52b4f412babb3c0575f68d7&format=json&nojsoncallback=1`,
+        url: `https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=${process.env.REACT_APP_FLICKR_API}&format=json&nojsoncallback=1`,
         params: { tags: query, page: pageNumber, per_page: 10 },
         cancelToken: new axios.CancelToken((c) => (cancel = c)),
       })
         .then((res) => {
-          console.log(res.data);
           setPhotos((prev) => {
             return [
               ...prev,
@@ -69,7 +66,6 @@ const usePhotoSearch = (query, pageNumber) => {
           });
           setHasMore(res.data.photos.photo.length > 0);
           setLoading(false);
-          console.log(res.data);
         })
         .catch((err) => {
           if (axios.isCancel(err)) return;

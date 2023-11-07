@@ -14,7 +14,6 @@ const Gallery = () => {
   const observer = useRef();
   useEffect(() => {
     const search = localStorage.getItem("search");
-    console.log(search);
     if (search) {
       setSuggestion(JSON.parse(search));
     } else {
@@ -78,8 +77,9 @@ const Gallery = () => {
           <>
             <div className="suggestion-box">
               <h1 className="suggestion-heading">Suggestions</h1>
-              {suggestion.map((item) => (
+              {suggestion.map((item, i) => (
                 <button
+                  key={i}
                   onClick={(e) => setSearchInput(item)}
                   className="suggestion-button"
                 >
@@ -102,7 +102,7 @@ const Gallery = () => {
               {photos?.map((eachItem, index) => {
                 if (photos.length === index + 1) {
                   return (
-                    <div className="photo-container" ref={lastPhotoElRef}>
+                    <div key={index} ref={lastPhotoElRef}>
                       <ModalImage
                         small={eachItem.image}
                         large={eachItem.image}
@@ -114,7 +114,7 @@ const Gallery = () => {
                   );
                 } else {
                   return (
-                    <div>
+                    <div key={index}>
                       <ModalImage
                         small={eachItem.image}
                         large={eachItem.image}
