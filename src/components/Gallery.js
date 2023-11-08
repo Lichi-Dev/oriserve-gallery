@@ -58,6 +58,7 @@ const Gallery = () => {
     localStorage.setItem("search", JSON.stringify(suggestion));
     setQuery(searchInput);
   };
+  console.log("hello");
   return (
     <div>
       <div className="search-container">
