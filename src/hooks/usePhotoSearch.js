@@ -30,7 +30,7 @@ const usePhotoSearch = (query, pageNumber) => {
               ...prev,
               ...res.data.photos.photo.map((item) => {
                 return {
-                  image: `http://farm${item.farm}.static.flickr.com/${item.server}/${item.id}_${item.secret}.jpg`,
+                  image: `https://farm${item.farm}.static.flickr.com/${item.server}/${item.id}_${item.secret}.jpg`,
                   title: item.title,
                 };
               }),
@@ -58,7 +58,7 @@ const usePhotoSearch = (query, pageNumber) => {
               ...prev,
               ...res.data.photos.photo.map((item) => {
                 return {
-                  image: `http://farm${item.farm}.static.flickr.com/${item.server}/${item.id}_${item.secret}.jpg`,
+                  image: `https://farm${item.farm}.static.flickr.com/${item.server}/${item.id}_${item.secret}.jpg`,
                   title: item.title,
                 };
               }),
